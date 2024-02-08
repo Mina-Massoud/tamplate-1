@@ -42,7 +42,7 @@ export default function SliderItem({ img, y, index, length }) {
               left: "50vw",
               top: "50vh",
             },
-            { duration: 0.5,  }
+            { duration: 0.5 }
           );
 
           animate(
@@ -54,7 +54,7 @@ export default function SliderItem({ img, y, index, length }) {
               top: "50%",
               left: "50vw",
             },
-            { duration: 0.5,  }
+            { duration: 0.5 }
           );
         }
       } else {
@@ -96,8 +96,9 @@ export default function SliderItem({ img, y, index, length }) {
   //     // Cleanup function to remove the event listener when the component unmounts
   //   }, []); // Empty dependency arr
 
+
   return (
-    <div ref={scope} className="parent">
+    <motion.div style={{y}} ref={scope} className="">
       <motion.div
         initial={{
           transform: "translate(-50%, -50%)",
@@ -135,6 +136,6 @@ export default function SliderItem({ img, y, index, length }) {
           transition={{ duration: 1 }}
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

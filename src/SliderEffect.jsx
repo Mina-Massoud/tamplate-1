@@ -78,14 +78,16 @@ export default function SliderEffect() {
   );
 
   return (
-    <motion.div
-      style={{ y: y, height: `${images.length * 100}vh` }}
-      className="relative w-[100vw] bg-slate-100"
-      ref={scope}
-    >
-      {images.map((img, i) => {
-        return <SliderItem key={i} img={img} index={i + 1} y={y} />;
-      })}
-    </motion.div>
+    <>
+      <motion.div
+        style={{ height: `${images.length * 100}vh` }}
+        className="relative w-[100vw] bg-slate-100"
+        ref={scope}
+      >
+        {images.map((img, i) => {
+          return <SliderItem key={i} img={img} index={i + 1} y={y} />;
+        })}
+      </motion.div>
+    </>
   );
 }

@@ -40,7 +40,7 @@ export default function FirstIdea() {
         <p>it's your step to be different</p>
       </motion.div>
       <GridEffect />
-      <p className="mx-[1em] text-[1.5rem] text-center">
+      <p className="mx-[1em] text-[1em] md:text-[1.5rem] text-center">
         inspired by:{" "}
         <a href=" https://mill3.studio/en/projects/gsoft/">
           https://mill3.studio/en/projects/gsoft/
