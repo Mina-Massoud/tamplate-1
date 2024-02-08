@@ -84,9 +84,10 @@ button:focus-visible {
   background-size: cover;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-} */
+}
+
 .mask {
   background-position: center;
   background-size: cover;
