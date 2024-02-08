@@ -11,7 +11,7 @@ import { useAnimate, useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import SliderItem from "./SliderEffectITem/SliderItem";
 
-const images = [img12, img11, img13, img14, img15, img16, img17];
+const images = [img16, img11, img13, img14, img15, img12, img16, img17];
 export default function SliderEffect() {
   //   const [scale, setScale] = useState(1);
   //   const scope2 = React.useRef();
@@ -66,6 +66,17 @@ export default function SliderEffect() {
   /////////////////////////
   const [scope, animate] = useAnimate();
 
+  const [heightState, setHeightState] = useState(window.innerHeight);
+  useEffect(() => {
+    function handleResize() {
+      setHeightState(window.innerHeight);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const yEffect = useScroll({
     target: scope,
     offset: [`0 0`, `1 0`],
@@ -74,20 +85,19 @@ export default function SliderEffect() {
   const y = useTransform(
     yEffect.scrollYProgress,
     [0, 1],
-    [0, window.innerHeight * images.length]
+    [0, heightState * (images.length + 1)]
   );
 
   return (
-    <>
-      <motion.div
-        style={{ height: `${images.length * 100}vh` }}
-        className="relative w-[100vw] bg-slate-100"
-        ref={scope}
-      >
-        {images.map((img, i) => {
-          return <SliderItem key={i} img={img} index={i + 1} y={y} />;
-        })}
-      </motion.div>
-    </>
+    <motion.div
+      style={{ height: `${images.length * heightState}px` }}
+      className="relative w-[100vw] bg-slate-100"
+      transition={{ duration: 2, ease: "easeInOut" }}
+      ref={scope}
+    >
+      {images.map((img, i) => {
+        return <SliderItem key={i} img={img} index={i + 1} y={y} />;
+      })}
+    </motion.div>
   );
 }

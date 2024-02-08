@@ -4,8 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 export default function SliderItem({ img, y, index, length }) {
   const [scale, setScale] = useState(1);
   const [scope, animate] = useAnimate();
-  //   const [track, setTrack] = useState(0);
-  //   const [track2, setTrack2] = useState(0);
 
   const scaleEffect = useScroll({
     target: scope,
@@ -20,9 +18,6 @@ export default function SliderItem({ img, y, index, length }) {
   );
 
   useEffect(() => {
-    scaleIn.on("change", (v) => {
-      setScale(v);
-    });
 
     y.on("change", async (v) => {
       console.log(Math.floor(v), window.innerHeight * index);
@@ -64,6 +59,8 @@ export default function SliderItem({ img, y, index, length }) {
             {
               width: "0vw",
               height: "0vh",
+              left: "50vw",
+              top: "50vh",
               transform: "translate(-50%, -50%) rotate(20deg)",
             },
             { duration: 0.5, ease: "easeInOut" }
@@ -74,6 +71,8 @@ export default function SliderItem({ img, y, index, length }) {
             {
               width: "0vw",
               height: "0vh",
+              top: "50%",
+              left: "50vw",
               transform: "translate(-50vw, -50vh) rotate(-22deg)",
             },
             { duration: 0.5, ease: "easeInOut" }
@@ -83,22 +82,13 @@ export default function SliderItem({ img, y, index, length }) {
     });
   }, []);
 
-  //   useEffect(() => {
-  //     const handleChange = (v) => {
-  //       setTrack(v);
-  //     };
-
-  //     y.on("change", handleChange);
-  //     scaleIn.on("change", (v) => {
-  //       setTrack2(v);
-  //     });
-
-  //     // Cleanup function to remove the event listener when the component unmounts
-  //   }, []); // Empty dependency arr
-
-
+  console.log("ffff " , scale);
   return (
-    <motion.div style={{y}} ref={scope} className="">
+    <motion.div
+      // style={{ y }}
+      ref={scope}
+      className="sticky top-0 flex h-screen items-center overflow-hidden "
+    >
       <motion.div
         initial={{
           transform: "translate(-50%, -50%)",
@@ -115,18 +105,20 @@ export default function SliderItem({ img, y, index, length }) {
         className="img-container overflow-hidden full-center "
       >
         <motion.img
-          //   style={{
-          //     transform: `translate(-50%, -50%) scale(${scale})`,
-          //     top: "50%",
-          //     left: "50%",
-          //   }}
-          initial={{
-            transform: "translate(-50vw, -50vh) scale(1) rotate(0deg)",
+          style={{
+            transform: `translate(-50vw, -50vh) scale(${scale})`,
             top: "50%",
-            left: "50vw",
+            left: "50%",
             width: index != 1 && "0vw",
             height: index != 1 && "0vh",
           }}
+          // initial={{
+          //   transform: "translate(-50vw, -50vh) rotate(0deg)",
+          //   top: "50%",
+          //   left: "50vw",
+          //   width: index != 1 && "0vw",
+          //   height: index != 1 && "0vh",
+          // }}
           //   animate={{
           //     transform: "translate(-50vw, -50vh) rotate(-20deg)",
           //   }}

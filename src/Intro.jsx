@@ -12,10 +12,7 @@ export default function Intro({ renderNextElement }) {
     await animate(".seq-1", { opacity: 0 }, { duration: 2, ease: "easeInOut" });
     await animate(".seq-2", { opacity: 1 }, { duration: 2, ease: "easeInOut" });
     await animate(".seq-2", { opacity: 0 }, { duration: 2, ease: "easeInOut" });
-    await animate(".seq-3", { opacity: 1 }, { duration: 2, ease: "easeInOut" });
-    await animate(".seq-3", { opacity: 0 }, { duration: 2, ease: "easeInOut" });
-    await animate(".seq-4", { opacity: 1 }, { duration: 2, ease: "easeInOut" });
-    await animate(".seq-4", { opacity: 0 }, { duration: 2, ease: "easeInOut" });
+
     await animate(
       scope.current,
       { opacity: 0.2 },
@@ -37,48 +34,26 @@ export default function Intro({ renderNextElement }) {
   return (
     <div
       ref={scope}
-      className="capitalize absolute space-x-8 bg-black w-[100vw] h-[100vh] flex flex-col items-center justify-center"
+      className="capitalize relative bg-black w-[100vw] h-[100vh] flex flex-col items-center justify-center"
     >
       <motion.h1
         initial={{ opacity: 0 }}
-        className="text  text-center intro hi"
+        className="text text-center absolute intro hi"
       >
         Hi There!
       </motion.h1>
-
       <motion.h1
         initial={{ opacity: 0 }}
-        className="text absolute seq-1 text-center font-thin"
+        className="text text-center seq-1 absolute text-[1em]"
       >
-        This will be a Web Template Series
-      </motion.h1>
-
-      <motion.h1
-        initial={{ opacity: 0 }}
-        className="text absolute px-[5em] seq-2 text-center  font-thin"
-      >
-        I will build a web templates from scratch
+        This will be a template series of cool ideas for your next project
       </motion.h1>
       <motion.h1
         initial={{ opacity: 0 }}
-        className="text absolute px-[5em] seq-3 text-center  font-thin"
+        className="text text-center seq-2 absolute text-[1em]"
       >
-        with providing the source code.
-        <br />
-        <br />
-        <a
-          href="https://github.com/Mina-Massoud"
-          className="intro w-fit mx-auto block transition-colors text-[0.8em]"
-          target="_blank"
-        >
-          <FaGithub />
-        </a>
-      </motion.h1>
-      <motion.h1
-        initial={{ opacity: 0 }}
-        className="text absolute px-[5em] seq-4 text-center intro font-thin"
-      >
-        Ready?
+        <a className="mx-[1em]" href="https://github.com/Mina-Massoud">Github</a>
+        <a href="https://github.com/Mina-Massoud">LinkedIn</a>
       </motion.h1>
     </div>
   );
