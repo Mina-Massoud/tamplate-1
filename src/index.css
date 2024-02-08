@@ -87,7 +87,6 @@ button:focus-visible {
 ::-webkit-scrollbar {
   display: none;
 }
-
 .mask {
   background-position: center;
   background-size: cover;
@@ -103,14 +102,6 @@ button:focus-visible {
   top: 0;
   left: 0;
   mix-blend-mode: multiply;
-}
-.center-absolute-full {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
 }
 
 .top-effect {

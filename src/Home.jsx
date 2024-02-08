@@ -13,6 +13,16 @@ export default function Home() {
       )}
 
       {renderNext && <MainIdeas />}
+{/* 
+      <div className="mt-[100vh]">
+        <h1 className="inline-block  text-black">
+          That's all, everything is coded from scratch, If you wanna specific
+          Template or specifc animation. DM me on linkedin :{" "}
+          <a href="https://www.linkedin.com/in/mina-melad/">
+            https://www.linkedin.com/in/mina-melad/
+          </a>
+        </h1>
+      </div> */}
     </div>
   );
 }
