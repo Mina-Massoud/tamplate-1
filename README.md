@@ -1,8 +1,29 @@
-# React + Vite
+# Cool Grid Parallax Animations & Slider
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Cool Grid Parallax Animations & Slider project! This project is designed to provide you with a set of visually stunning grid-based parallax animations and a customizable slider for your website. Enhance the user experience by incorporating these cool animations and sliders to capture attention and make your website stand out.
 
-Currently, two official plugins are available:
+I implemented these 3 ideas,
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1- Fade in and out like an intro of a movie.
+
+2- Cool grid interacts with your scrolling.
+
+3- Unique slider that shows images based on your scroll progress, with smooth transitions and cool animation.
+
+# Get Started
+
+## CLonning
+```
+git clone https://github.com/Mina-Massoud/tamplate-1.git
+```
+
+## Installing the Dependencies
+```
+npm i
+```
+## Go Live
+```
+npm run dev
+```
+
+LinkedIn: https://www.linkedin.com/in/mina-melad/
