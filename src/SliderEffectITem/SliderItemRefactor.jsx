@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { motion, useAnimate, useTransform } from "framer-motion";
-export default function SliderItemRefactor({ img, y, index }) {
+export default function SliderItemRefactor({ img, y, index, l }) {
   const [scope, animate] = useAnimate();
+
+  const [scaleState, setScaleState] = useState(1);
 
   const DURATION = 0.5;
   const factor = 1;
 
   const scaleIn = useTransform(
     y,
-    [0, window.innerHeight * factor], // for every 100vh
-    [1, 1.1], // ...scale
-    { clamp: false }
+    [0, l * window.innerHeight * factor], // for every 100vh
+    [0.927295218, 1.57079633]
   );
 
   const [height, setHeight] = useState(window.innerHeight);
@@ -23,11 +24,9 @@ export default function SliderItemRefactor({ img, y, index }) {
 
   async function handleAnimate() {
     if (Math.floor(y.get()) > factor * height * (index - 1)) {
-      // console.log("entered 1");
       if (
         Math.floor(y.getPrevious()) <= Math.floor(y.get()) &&
-        Math.floor(y.getPrevious()) <=
-          factor * height * (index - 1) &&
+        Math.floor(y.getPrevious()) <= factor * height * (index - 1) &&
         index !== 1
       ) {
         animate(
@@ -64,16 +63,15 @@ export default function SliderItemRefactor({ img, y, index }) {
             top: "50%",
             width: "100vw",
             height: "100vh",
-            transform: `translate(-50vw, -50vh) rotate(0deg) scale(${scaleIn.get()})`,
+            transform: `translate(-50vw, -50vh) rotate(0deg) scale(${
+              Math.sin(scaleIn.get()) + 0.2
+            })`,
           },
           { duration: DURATION, ease: "easeOut" }
         );
       }
     } else {
-      if (
-        y.getPrevious() >= factor * height * (index - 1) &&
-        index !== 1
-      ) {
+      if (y.getPrevious() >= factor * height * (index - 1) && index !== 1) {
         animate(
           ".img-container",
           {
@@ -101,7 +99,9 @@ export default function SliderItemRefactor({ img, y, index }) {
   }
 
   useEffect(() => {
-    y.on("change", handleAnimate);
+    y.on("change", (v) => {
+      handleAnimate(v);
+    });
   }, []);
 
   return (

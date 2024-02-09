@@ -39,7 +39,10 @@ export default function FirstIdea() {
         <br />
         <p>it's your step to be different</p>
 
-        <p>LinkedIn for contact: <a href=""></a></p>
+        <p>
+          LinkedIn for contact:{" "}
+          <a className="underline" href="https://www.linkedin.com/in/mina-melad/">LinkedIn</a>
+        </p>
       </motion.div>
       <GridEffect />
       <p className="mx-[1em] text-[1rem] text-center">
