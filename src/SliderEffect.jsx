@@ -6,14 +6,13 @@ import img14 from "./assets/images/img14.jpg";
 import img15 from "./assets/images/img15.jpg";
 import img16 from "./assets/images/img16.jpg";
 import img17 from "./assets/images/img17.jpg";
-import finalImg from "./assets/images/final.png"
+import finalImg from "./assets/images/final.png";
 
 import { useAnimate, useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import SliderItemRefactor from "./SliderEffectITem/SliderItemRefactor";
-const images = [img11, img16, img15, img17, img14 , img13, img12 , finalImg];
+const images = [img11, img16, img15, img17, img14, img13, img12];
 export default function SliderEffect() {
-
   // most shitty code I ever wrote
   //   const [scale, setScale] = useState(1);
   //   const scope2 = React.useRef();
@@ -68,20 +67,30 @@ export default function SliderEffect() {
   /////////////////////////
   const [scope, animate] = useAnimate();
 
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setHeight(window.innerHeight);
+    });
+  }, []);
+
+  const factor = 1;
+
   const yEffect = useScroll({
     target: scope,
-    offset: [`0 0`, `1 0`],
+    offset: [`0 0`, `1 1`],
   });
 
   const y = useTransform(
     yEffect.scrollYProgress,
     [0, 1],
-    [0, window.innerHeight * images.length]
+    [0, images.length * height * factor]
   );
 
   return (
     <motion.div
-      style={{ height: `${images.length * 500}vh` }}
+      style={{ height: `${images.length * height * factor}px` }}
       className="relative w-[100vw] bg-slate-100"
       ref={scope}
     >

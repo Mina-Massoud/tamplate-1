@@ -6,8 +6,6 @@ export default function SecondIdea() {
 
   return (
     <div className="h-fit">
-      <h1 className="text-center py-[2em]">Last Idea</h1>
-
       <SliderEffect />
     </div>
   );

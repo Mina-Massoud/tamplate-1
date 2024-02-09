@@ -1,16 +1,34 @@
-import React, { useEffect } from "react";
-import { motion, useAnimate } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, useAnimate, useTransform } from "framer-motion";
 export default function SliderItemRefactor({ img, y, index }) {
   const [scope, animate] = useAnimate();
 
   const DURATION = 0.5;
+  const factor = 1;
 
-  async function handleAnimate(v) {
-    if (index !== 1 && Math.floor(v) > 0.5 * window.innerHeight * (index - 1)) {
+  const scaleIn = useTransform(
+    y,
+    [0, window.innerHeight * factor], // for every 100vh
+    [1, 1.1], // ...scale
+    { clamp: false }
+  );
+
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setHeight(window.innerHeight);
+    });
+  }, []);
+
+  async function handleAnimate() {
+    if (Math.floor(y.get()) > factor * height * (index - 1)) {
       // console.log("entered 1");
       if (
         Math.floor(y.getPrevious()) <= Math.floor(y.get()) &&
-        Math.floor(y.getPrevious()) <= 0.5 * window.innerHeight * index
+        Math.floor(y.getPrevious()) <=
+          factor * height * (index - 1) &&
+        index !== 1
       ) {
         animate(
           ".img-container",
@@ -35,11 +53,26 @@ export default function SliderItemRefactor({ img, y, index }) {
           },
           { duration: DURATION, ease: "easeOut" }
         );
+      } else if (
+        height * factor * (index - 1) <= y.get() &&
+        y.get() <= factor * height * index
+      ) {
+        animate(
+          ".center-img",
+          {
+            left: "50vw",
+            top: "50%",
+            width: "100vw",
+            height: "100vh",
+            transform: `translate(-50vw, -50vh) rotate(0deg) scale(${scaleIn.get()})`,
+          },
+          { duration: DURATION, ease: "easeOut" }
+        );
       }
     } else {
       if (
-        y.getPrevious() >= 0.5 * window.innerHeight * (index - 1) &&
-        index != 1
+        y.getPrevious() >= factor * height * (index - 1) &&
+        index !== 1
       ) {
         animate(
           ".img-container",
